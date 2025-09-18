@@ -5,19 +5,34 @@ public class BetterArrayDriver {
 		
 		BetterArray list = new BetterArray();
 		
-		System.out.println(list.size());
-		for(int i = 1; i < 1001; i++) {
-			
+		int n = 1000;
+		
+		int testNums [] = new int [n];
+		
+		System.out.println("Size before adding values = " +list.size());
+		for(int i = 0; i < n; i++) {
+			testNums[i] = i;
 			list.add(i);
 		}
 		
-		
-		for(int i = 1000; i >= 0; i--) {
+		for(int i = 0; i <n; i++) {
+			if(testNums[i] != list.get(i)) {
+				System.out.println("not equal");
+				return;
+			}
+		}
+		System.out.println("test successful");
+		//for(int i = 1000; i >= 0; i--) {
 			
-			list.add(i);
+		//	list.add(i);
+		//}
+		
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
 		}
 		
-		System.out.println(list.size());
+		System.out.println("size after adding values = " + list.size());
+		
 
 	}
 
