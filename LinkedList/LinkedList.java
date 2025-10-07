@@ -59,14 +59,46 @@ implements ListInterface<I>{
 			//this.tail = node1;
 			//this.numElements++;
 		}
-		this.tail = node1;
+		this.tai nl =ode1;
 		this.numElements++;
 		
 	}
 
 	@Override
 	public void add(I element, int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
+		
+		if(index < 0 || index > this.numElements) {
+			throw new IndexOutOfBoundsException("Please use a valid index");
+		}
+		
+		if(this.isEmpty() || (index == this.numElements) ) {
+			this.add(element);
+		}else if (index == 0) {
+			Node<I> newNode = new Node<I>(element);
+			newNode.setNext(this.head);
+			this.head = newNode;
+			this.numElements++;
+			
+		}else {
+			
+			int currentNodeIndex = 0;
+			Node<I> currentNode = this.head;
+			Node<I> previousNode = null;
+			// Search where to insert the neweNode
+			while(currentNodeIndex < index) {
+				previousNode = currentNode;
+				currentNode = currentNode.getNext();
+				currentNodeIndex++;
+			}
+			
+			Node<I> newNode = new Node<I>(element);
+			
+			previousNode.setNext(newNode);
+			newNode.setNext(currentNode);
+			this.numElements++;
+			
+			
+		}
 		
 	}
 
@@ -125,8 +157,47 @@ implements ListInterface<I>{
 
 	@Override
 	public I remove(int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		if(index < 0 || index >= this.numElements) {
+			throw new IndexOutOfBoundsException("Please use a valid index");
+		}	
+		
+		I removedElement = null;
+		if(this.numElements == 1) {
+			removedElement = this.head.getData();
+			this.removeAll();
+		}else if (index == 0) {
+			removedElement = this.head.getData();
+			this.head = this.head.getNext();
+			this.numElements--;
+		} else {
+			// {
+	       //}
+			
+			int currentNodeIndex = 0;
+			Node<I> currentNode = this.head;
+			Node<I> previousNode = null;
+			// Search where to insert the neweNode
+			while(currentNodeIndex < index) {
+				previousNode = currentNode;
+				currentNode = currentNode.getNext();
+				currentNodeIndex++;
+			}
+			
+			if(index == (this.numElements - 1 )) {
+				removedElement = tail.getData();
+				this.tail = previousNode;
+				this.tail.setNext(null);
+				this.numElements--;
+			}else {
+				removedElement = currentNode.getData();
+				previousNode.setNext(currentNode.getNext());
+				this.numElements--;
+			}
+			
+		}
+		
+		return removedElement;
 	}
 
 	@Override
