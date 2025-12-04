@@ -48,7 +48,7 @@ public class TreeNode <E extends KeyedElementInterface<K>, K extends Comparable<
 	}
 	
 	public TreeNode<E, K> getRightChild(){
-		return this.leftChild;
+		return this.rightChild;
 	}
 	
 	public void setParent(TreeNode<E, K> parent) {
